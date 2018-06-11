@@ -24,17 +24,16 @@ class Server {
 
     this.manager = new TunnelManager()
     this._ssl = {
-      enabled: process.env.SSL_ENABLED || false,
+      enabled: (process.env.SSL_ENABLED === 'true') || false,
       port: parseInt(process.env.SSL_PORT) || 443,
-      debug: process.env.SSL_DEBUG || false,
+      debug: (process.env.SSL_DEBUG === 'true') || false,
       email: process.env.SSL_EMAIL,
       acme: 'https://acme-staging-v02.api.letsencrypt.org/directory',
       dir: process.env.SSL_DIR || require('os').homedir() + '/acme'
     }
-    if (process.env.SSL_PRODUCTION) {
+    if (process.env.SSL_PRODUCTION === 'true') {
       this._ssl.acme = 'https://acme-v02.api.letsencrypt.org/directory'
     }
-    // this._greenlock = (this._ssl.enabled) ? this._createGreenlock() : null
     this._greenlock = this._createGreenlock()
     this._server = null
     this._secureServer = null
