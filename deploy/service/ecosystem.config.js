@@ -37,6 +37,7 @@ module.exports = {
       'post-deploy': 'cd deploy/service && npm install hypertunnel-server@latest && authbind --deep pm2 startOrRestart ecosystem.config.js',
       env: {
         NODE_ENV: 'development',
+        DEBUG: 'hypertunnel:*',
         SERVER_DOMAIN: `${CONFIG.hosts.vagrant}.xip.io`
       }
     }
