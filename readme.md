@@ -1,4 +1,4 @@
-# ✨  hypertunnel [![uptime](https://img.shields.io/uptimerobot/status/m780555855-0760af5af94854abdcb02c82.svg)](https://stats.uptimerobot.com/PzXg8inWK) [![ratio](https://img.shields.io/uptimerobot/ratio/m778918918-3e92c097147760ee39d02d36.svg)](https://stats.uptimerobot.com/PzXg8inWK) [![npm](https://img.shields.io/npm/v/hypertunnel.svg)](https://www.npmjs.com/package/hypertunnel)
+# ✨  hypertunnel [![ ](https://img.shields.io/uptimerobot/status/m780555855-0760af5af94854abdcb02c82.svg)](https://stats.uptimerobot.com/PzXg8inWK) [![ ](https://img.shields.io/uptimerobot/ratio/m778918918-3e92c097147760ee39d02d36.svg)](https://stats.uptimerobot.com/PzXg8inWK) [![ ](https://img.shields.io/npm/v/hypertunnel.svg)](https://www.npmjs.com/package/hypertunnel)
 
 > When localtunnel/ngrok is not enough.
 
@@ -9,19 +9,42 @@ This free TCP relay/reverse proxy service can be used to **expose any TCP/IP ser
 
 
 ## Installation
-
 ```bash
 npm install -g hypertunnel
 ```
 
 ## Usage
-
 ```bash
-# If 8080 is the local TCP/IP service port you wish to expose on the internet
-hypertunnel --port 8080
-# > Tunneling hypertunnel.ga:64118 > localhost:8080
+❯❯❯ hypertunnel --help
+
+  Usage: hypertunnel --port 8080 [options]
+
+  Expose any local TCP/IP service on the internet.
+
+  Options:
+
+    -v, --version                output the version number
+    -p, --port [port]            local TCP/IP service port to tunnel
+    -l, --localhost [localhost]  local server (default: localhost)
+    -s, --server [server]        hypertunnel server to use (default: https://hypertunnel.ga)
+    -t, --token [token]          token required by the server (default: free-server-please-be-nice)
+    -i, --internet-port [port]   the desired internet port on the public server
+    -h, --help                   output usage information
 ```
 
+
+## Example
+
+In case 8080 is a local TCP/IP service port you wish to expose on the internet:
+
+```bash
+❯❯❯ hypertunnel --port 8080
+```
+```bash
+  ✨ Hypertunnel created.
+
+  Tunneling hypertunnel.ga:9432 > localhost:8080
+```
 
 ## Comparison to localtunnel/ngrok
 
