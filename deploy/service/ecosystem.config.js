@@ -36,10 +36,10 @@ module.exports = {
         SERVER_DOMAIN: `hypertunnel.ga`,
         SERVER_TOKEN: 'free-server-please-be-nice',
         SSL_ENABLED: true,
-        SSL_DEBUG: true,
+        // SSL_DEBUG: true,
         SSL_PORT: 443,
         SSL_EMAIL: 'mail@hypertunnel.ga',
-        // SSL_PRODUCTION: true
+        SSL_PRODUCTION: true
       }
     },
 
