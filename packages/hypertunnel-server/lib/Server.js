@@ -8,7 +8,6 @@ const Koa = require('koa')
 const Router = require('koa-router')
 const Greenlock = require('greenlock-koa')
 const bodyParser = require('koa-bodyparser')
-const enforceHttps = require('koa-sslify')
 
 const TunnelManager = require('./TunnelManager')
 
