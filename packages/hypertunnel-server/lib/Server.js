@@ -138,7 +138,6 @@ class Server {
       }
     })
 
-    if (this._ssl.enabled) { app.use(enforceHttps()) }
     app.use(bodyParser())
     app.use(router.routes())
     app.use(router.allowedMethods())
@@ -154,7 +153,10 @@ class Server {
     })
 
     await new Promise(resolve => {
-      this._server = http.createServer(app.callback()).listen(this.serverPort, () => {
+      this._server = http.createServer(
+        this._greenlock.tlsOptions,
+        this._greenlock.middleware(app.callback())
+      ).listen(this.serverPort, () => {
         console.log('Server listening on port', this.serverPort)
         return resolve()
       })
