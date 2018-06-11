@@ -11,6 +11,9 @@ This free TCP relay/reverse proxy service can be used to **expose any TCP/IP ser
 ## Installation
 ```bash
 npm install -g hypertunnel
+
+# or use directly with npx (part of npm):
+npx hypertunnel --port 8080
 ```
 
 ## Usage
