@@ -90,7 +90,6 @@ ansible-playbook provisioning/remote.yml -i provisioning/hosts
 
 #### Local
 
-
 ```bash
 npm i -g pm2@latest
 
@@ -101,4 +100,23 @@ pm2 deploy vagrant setup
 
 # Deploy
 pm2 deploy vagrant
+
+# ssh into vagrant machine for debugging:
+pm2 list
+pm2 monit
+```
+
+
+#### Remote
+
+```bash
+npm i -g pm2@latest
+
+cd service/
+
+# Setup deployment
+pm2 deploy remote setup
+
+# Deploy
+pm2 deploy remote
 ```
