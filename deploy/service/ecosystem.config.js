@@ -17,10 +17,9 @@ module.exports = {
       instances: 1,
       autorestart: true,
       env: {
-        NODE_ENV: 'production',
-        SERVER_PORT: 80,
-        SERVER_DOMAIN: 'hypertunnel.ga',
-        SERVER_TOKEN: 'free-server-please-be-nice'
+        // NODE_ENV: 'production',
+        // SERVER_DOMAIN: 'hypertunnel.ga',
+        // SERVER_TOKEN: 'free-server-please-be-nice'
       }
     }
   ],
@@ -38,7 +37,9 @@ module.exports = {
       env: {
         NODE_ENV: 'development',
         DEBUG: 'hypertunnel:*',
-        SERVER_DOMAIN: `${CONFIG.hosts.vagrant}.xip.io`
+        SERVER_PORT: 80,
+        SERVER_DOMAIN: `${CONFIG.hosts.vagrant}.xip.io`,
+        SERVER_TOKEN: 'free-server-please-be-nice'
       }
     }
   }
