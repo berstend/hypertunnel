@@ -1,0 +1,47 @@
+{
+  "name": "hypertunnel-server",
+  "version": "1.1.0",
+  "description": "Server for hypertunnel, a TCP/IP relay to expose local services on the internet.",
+  "main": "index.js",
+  "repository": "berstend/hypertunnel",
+  "author": "berstend & tewarid",
+  "license": "MIT",
+  "scripts": {
+    "docs": "exit 0",
+    "test": "ava -v && standard"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "bin": {
+    "hypertunnel-server": "./cli.js"
+  },
+  "keywords": [
+    "hypertunnel",
+    "hypertunnel-server",
+    "localtunnel",
+    "ngrok",
+    "tcp/ip",
+    "proxy",
+    "nat",
+    "relay",
+    "hole punching",
+    "hyper",
+    "node-tcp-relay"
+  ],
+  "dependencies": {
+    "commander": "^2.15.1",
+    "debug": "^3.1.0",
+    "get-port": "^3.2.0",
+    "koa": "^2.5.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "node-tcp-relay": "^0.0.13",
+    "port-validator": "^0.1.0-beta1"
+  },
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "execa": "^0.10.0",
+    "standard": "^11.0.1"
+  }
+}

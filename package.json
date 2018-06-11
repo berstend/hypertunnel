@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "description": "Expose any local TCP/IP service on the internet.",
+  "repository": "berstend/hypertunnel",
+  "author": "berstend & tewarid",
+  "license": "MIT",
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "docs": "lerna run docs",
+    "test": "lerna run test",
+    "prepare": "lerna run prepare"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "got": "^8.3.1",
+    "lerna": "^2.11.0"
+  }
+}
