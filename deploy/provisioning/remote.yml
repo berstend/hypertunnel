@@ -1,0 +1,15 @@
+- name: Remote
+  hosts: remote
+  become: true
+  remote_user: root
+  gather_facts: false
+  vars_files:
+    - ./defaults/vars.yml
+
+  tasks:
+    - include: tasks/bootstrap.yml
+    - include: tasks/tuning.yml
+    - include: tasks/deploy-user.yml
+    - include: tasks/nvm.yml
+    - include: tasks/pm2.yml
+

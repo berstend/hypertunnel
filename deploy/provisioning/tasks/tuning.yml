@@ -1,0 +1,23 @@
+# Increase limits
+- pam_limits:
+    domain: '*'
+    limit_type: soft
+    limit_item: nofile
+    value: 64000
+
+- pam_limits:
+    domain: '*'
+    limit_type: hard
+    limit_item: nofile
+    value: 64000
+
+- sysctl:
+    name: net.ipv4.ip_local_port_range
+    value: '1024 65535'
+    sysctl_set: yes
+    state: present
+    reload: yes
+
+# more:
+# https://wiki.mikejung.biz/Sysctl_tweaks
+# https://gist.github.com/kgriffs/4027835

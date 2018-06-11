@@ -1,0 +1,6 @@
+- name: Generate local SSH key for {{project_name}}
+  tags:
+    - launch
+  shell: ssh-keygen -b 2048 -t rsa -f ~/.ssh/{{project_name}} -q -N ""
+  args:
+    creates: ~/.ssh/{{project_name}}

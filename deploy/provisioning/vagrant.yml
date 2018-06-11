@@ -1,0 +1,14 @@
+- name: Vagrant
+  hosts: vagrant
+  become: true
+  remote_user: vagrant
+  gather_facts: True
+  vars_files:
+    - ./defaults/vars.yml
+
+  tasks:
+    - include: tasks/bootstrap.yml
+    - include: tasks/tuning.yml
+    - include: tasks/deploy-user.yml
+    - include: tasks/nvm.yml
+    - include: tasks/pm2.yml

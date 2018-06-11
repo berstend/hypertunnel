@@ -1,0 +1,5 @@
+[vagrant]
+192.168.33.10 ansible_python_interpreter=/usr/bin/python3
+
+[remote]
+hypertunnel.ga ansible_python_interpreter=/usr/bin/python3

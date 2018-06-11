@@ -1,0 +1,9 @@
+# Used for ssh key, server hostname
+project_name: hypertunnel
+
+nvm:
+  user: deploy
+  version: v0.33.11
+  node_version: 'v10.4.0'
+
+nvm_bin_path: "/home/{{ nvm.user }}/.nvm/versions/node/{{ nvm.node_version }}/bin"

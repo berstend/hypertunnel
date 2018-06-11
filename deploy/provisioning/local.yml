@@ -1,0 +1,7 @@
+- name: Local
+  hosts: localhost
+  vars_files:
+    - ./defaults/vars.yml
+
+  tasks:
+    - include: tasks/generate-local-ssh-key.yml

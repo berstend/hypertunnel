@@ -1,0 +1,24 @@
+---
+- name: Install NVM
+  become: yes
+  become_user: "{{ nvm.user }}"
+  shell: "curl https://raw.githubusercontent.com/creationix/nvm/{{ nvm.version }}/install.sh | bash"
+  register: nvm_result
+
+- name: Check NVM Version
+  become: yes
+  become_user: "{{ nvm.user }}"
+  shell: bash -ic "nvm --version"
+  register: version_response
+
+- name: Install Node
+  become: yes
+  become_user: "{{ nvm.user }}"
+  shell: bash -ic "nvm install {{ nvm.node_version }}"
+
+- name: Change .config owner (and group)
+  file:
+    path: "/home/{{ nvm.user }}/.config/"
+    owner: "{{ nvm.user }}"
+    group: "{{ nvm.user }}"
+    recurse: true

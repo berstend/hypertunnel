@@ -1,0 +1,56 @@
+- name: Install ansible requirements
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+    update_cache: yes
+    cache_valid_time: 3600
+  with_items:
+    - aptitude
+
+- name: Upgrade existing packages
+  apt:
+    update_cache: yes
+    upgrade: yes
+
+- name: Install basic packages
+  apt: name={{item}} state=present
+  with_items:
+       - vim
+       - git
+       - fail2ban
+       - autoconf
+       - build-essential
+       - unzip
+       - htop
+       - unattended-upgrades
+
+- name: Make sure unattended-upgrades only installs from $ubuntu_release-security
+  action: lineinfile dest=/etc/apt/apt.conf.d/50unattended-upgrades regexp="$ubuntu_release-updates" state=absent
+
+# https://0049am.wordpress.com/2018/05/20/enable-ntp-sync-on-clean-ubuntu-18-04-server-installation/
+- name: Ensure time is being synchronized
+  lineinfile:
+    path: /etc/systemd/timesyncd.conf
+    line: 'NTP=pool.ntp.org'
+
+- name: Reload timesync daemon
+  service:
+    name: systemd-timesyncd
+    state: restarted
+
+- name: Change hostname to {{project_name}}
+  hostname:
+    name: "{{project_name}}"
+
+- name: Add {{project_name}} to /etc/hosts
+  lineinfile:
+    dest: /etc/hosts
+    regexp: '^127\.0\.0\.1[ \t]+localhost'
+    line: '127.0.0.1 localhost {{project_name}}'
+    state: present
+
+- pam_limits:
+    domain: '*'
+    limit_type: soft
+    limit_item: nofile
+    value: 64000

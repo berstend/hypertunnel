@@ -1,0 +1,17 @@
+- name: Add the deploy user
+  user: name=deploy
+        home=/home/deploy
+        shell=/bin/bash
+        comment="Deploy User"
+
+- name: Set up authorized_keys for the deploy user
+  authorized_key: user=deploy
+                  state=present
+                  key="{{ item }}"
+  with_file:
+    - ~/.ssh/{{project_name}}.pub
+
+- name: Add deploy user to the sudoers
+  copy:
+    dest: "/etc/sudoers.d/deploy"
+    content: "deploy  ALL=(ALL)  NOPASSWD: ALL"

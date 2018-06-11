@@ -1,0 +1,39 @@
+- name: Install PM2
+  become: yes
+  become_user: "{{ nvm.user }}"
+  shell: "PATH=$PATH:{{ nvm_bin_path }} npm install pm2@latest -g"
+
+
+- name: Change config owner (and group)
+  file:
+    path: "/home/{{ nvm.user }}/.pm2/"
+    owner: "{{ nvm.user }}"
+    group: "{{ nvm.user }}"
+    recurse: true
+
+- name: Install PM2 startup service
+  become: yes
+  become_user: "{{ nvm.user }}"
+  shell: "sudo env PATH=$PATH:{{nvm_bin_path}} /home/{{ nvm.user }}/.nvm/versions/node/{{ nvm.node_version }}/lib/node_modules/pm2/bin/pm2 startup systemd -u {{ nvm.user }} --hp /home/{{ nvm.user }}"
+
+- name: Install authbind
+  apt: name={{item}} state=present
+  with_items:
+    - authbind
+
+- name: Add Port 80
+  become: yes
+  file: 'path=/etc/authbind/byport/80 mode=0755 owner={{ nvm.user }} state=touch'
+
+- name: Add Port 443
+  become: yes
+  file: 'path=/etc/authbind/byport/443 mode=0755 owner={{ nvm.user }} state=touch'
+
+- name: Authbind PM2
+  become: yes
+  become_user: "{{ nvm.user }}"
+  shell: "PATH=$PATH:{{nvm_bin_path}} authbind --deep pm2 update"
+
+
+
+
