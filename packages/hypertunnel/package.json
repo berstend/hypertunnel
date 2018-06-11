@@ -1,6 +1,6 @@
 {
   "name": "hypertunnel",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Expose any local TCP/IP service on the internet.",
   "main": "index.js",
   "repository": "berstend/hypertunnel",
@@ -32,6 +32,7 @@
     "node-tcp-relay"
   ],
   "dependencies": {
+    "commander": "^2.15.1",
     "debug": "^3.1.0",
     "got": "^8.3.1",
     "node-tcp-relay": "^0.0.13",
