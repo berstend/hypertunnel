@@ -3,8 +3,10 @@
 const debug = require('debug')('hypertunnel:server')
 
 const http = require('http')
+const https = require('https')
 const Koa = require('koa')
 const Router = require('koa-router')
+const Greenlock = require('greenlock-koa')
 const bodyParser = require('koa-bodyparser')
 
 const TunnelManager = require('./TunnelManager')
@@ -20,7 +22,20 @@ class Server {
     this.serverToken = opts.serverToken || 'free-server-please-be-nice'
 
     this.manager = new TunnelManager()
+    this._ssl = {
+      enabled: process.env.SSL_ENABLED || false,
+      port: parseInt(process.env.SSL_PORT) || 443,
+      debug: process.env.SSL_DEBUG || false,
+      email: process.env.SSL_EMAIL,
+      acme: 'https://acme-staging-v02.api.letsencrypt.org/directory',
+      dir: process.env.SSL_DIR || require('os').homedir() + '/acme'
+    }
+    if (process.env.SSL_PRODUCTION) {
+      this._ssl.acme = 'https://acme-v02.api.letsencrypt.org/directory'
+    }
+    this._greenlock = (this._ssl.enabled) ? this._createGreenlock() : null
     this._server = null
+    this._secureServer = null
     debug('created', opts)
   }
 
@@ -141,7 +156,30 @@ class Server {
         return resolve()
       })
     })
+    await new Promise(resolve => {
+      if (!this._ssl.enabled) { return resolve() }
+      this._secureServer = https.createServer(
+        this._greenlock.tlsOptions,
+        this._greenlock.middleware(app.callback())
+      ).listen(this._ssl.port, () => {
+        console.log('Secure server listening on port', this._ssl.port)
+        return resolve()
+      })
+    })
     return this
+  }
+
+  _createGreenlock () {
+    return Greenlock.create({
+      version: 'draft-11', // Let's Encrypt v2
+      server: this._ssl.acme,
+      email: this._ssl.email,
+      agreeTos: true,
+      approveDomains: [ this.serverDomain ],
+      communityMember: false,
+      configDir: this._ssl.dir,
+      debug: this._ssl.debug
+    })
   }
 
   close () {

@@ -13,7 +13,7 @@ module.exports = async (argv) => {
     .usage('--port 8080 [options]')
     .option('-p, --port [port]', 'local TCP/IP service port to tunnel', parseInt)
     .option('-l, --localhost [localhost]', 'local server', 'localhost')
-    .option('-s, --server [server]', 'hypertunnel server to use', 'https://api.hypertunnel.ga')
+    .option('-s, --server [server]', 'hypertunnel server to use', 'https://hypertunnel.ga')
     .option('-t, --token [token]', 'token required by the server', 'free-server-please-be-nice')
     .option('-i, --internet-port [port]', 'the desired internet port on the public server', parseInt)
     .parse(argv)

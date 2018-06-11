@@ -13,7 +13,7 @@ class Client {
   constructor (port, opts = {}) {
     this.port = port
     this.host = opts.host || 'localhost'
-    this.server = opts.server || 'https://api.hypertunnel.ga'
+    this.server = opts.server || 'https://hypertunnel.ga'
     this.serverParts = parseUrl(this.server)
     this.token = opts.token || 'free-server-please-be-nice'
     this.desiredInternetPort = opts.internetPort

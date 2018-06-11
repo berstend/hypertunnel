@@ -21,7 +21,7 @@ hypertunnel --help
     -v, --version                output the version number
     -p, --port [port]            local TCP/IP service port to tunnel
     -l, --localhost [localhost]  local server (default: localhost)
-    -s, --server [server]        hypertunnel server to use (default: https://api.hypertunnel.ga)
+    -s, --server [server]        hypertunnel server to use (default: https://hypertunnel.ga)
     -t, --token [token]          token required by the server (default: free-server-please-be-nice)
     -i, --internet-port [port]   the desired internet port on the public server
     -h, --help                   output usage information

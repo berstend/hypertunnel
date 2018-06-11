@@ -31,10 +31,15 @@ module.exports = {
       'post-deploy': 'cd deploy/service && npm install hypertunnel-server@latest && authbind --deep pm2 startOrRestart ecosystem.config.js',
       env: {
         NODE_ENV: 'production',
-          DEBUG: 'hypertunnel:*',
+        // DEBUG: 'hypertunnel:*',
         SERVER_PORT: 80,
         SERVER_DOMAIN: `hypertunnel.ga`,
-        SERVER_TOKEN: 'free-server-please-be-nice'
+        SERVER_TOKEN: 'free-server-please-be-nice',
+        SSL_ENABLED: true,
+        SSL_DEBUG: true,
+        SSL_PORT: 443,
+        SSL_EMAIL: 'mail@hypertunnel.ga',
+        // SSL_PRODUCTION: true
       }
     },
 
