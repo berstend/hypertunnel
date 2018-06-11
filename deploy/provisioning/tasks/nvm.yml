@@ -22,3 +22,11 @@
     owner: "{{ nvm.user }}"
     group: "{{ nvm.user }}"
     recurse: true
+
+- name: Add {{nvm_bin_path}} to path
+  lineinfile: >
+    dest=/etc/environment
+    state=present
+    backrefs=yes
+    regexp='PATH=(["]*)((?!.*?{{ nvm_bin_path }}).*?)(["]*)$'
+    line="PATH=\1\2:{{ nvm_bin_path }}\3"
