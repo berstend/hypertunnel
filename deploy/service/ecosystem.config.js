@@ -32,7 +32,7 @@ module.exports = {
       ref: 'origin/master',
       repo: 'https://github.com/berstend/hypertunnel.git',
       path: `/home/${CONFIG.deployUser}/${CONFIG.serviceName}`,
-      'post-deploy': 'cd deploy/service && npm install hypertunnel-server@latest && pm2 startOrRestart ecosystem.config.js',
+      'post-deploy': 'cd deploy/service && npm install hypertunnel-server@latest && authbind --deep pm2 startOrRestart ecosystem.config.js',
       env: {
         NODE_ENV: 'development',
         SERVER_DOMAIN: `${CONFIG.hosts.vagrant}.xip.io`
