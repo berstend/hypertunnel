@@ -87,12 +87,18 @@ ansible-playbook provisioning/remote.yml -i provisioning/hosts
 
 * Modify `ecosystem.config.js` (ips/domains)
 
+
 #### Local
+
 
 ```bash
 npm i -g pm2@latest
 
+cd service/
+
 # Setup deployment at vagrant box
 pm2 deploy vagrant setup
 
+# Deploy
+pm2 deploy vagrant
 ```

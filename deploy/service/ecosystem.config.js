@@ -14,6 +14,8 @@ module.exports = {
     {
       name: CONFIG.serviceName,
       script: 'app.js',
+      instances: 1,
+      autorestart: true,
       env: {
         NODE_ENV: 'production',
         SERVER_PORT: 80,
