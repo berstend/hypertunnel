@@ -26,7 +26,7 @@ hypertunnel --port 8080
 ## Comparison to localtunnel/ngrok
 
 Both are great services! 
-If your use-case is to simply tunnel local http/https web server traffic I suggest using them. :-)
+If your use-case is to simply tunnel local http web server traffic I suggest using them. :-)
 
 I ran into issues when trying to expose a local proxy server (to use the client as forwarding proxy). Both services need to inspect and rewrite HTTP headers for routing, so using the tunnel as a proxy in e.g. Chrome won't work. There are a couple other use-cases where raw TCP stream tunnelling is desired and hypertunnel is the only available option.
 
