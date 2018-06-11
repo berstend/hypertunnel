@@ -38,6 +38,7 @@
     "koa": "^2.5.1",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
+    "koa-sslify": "^2.1.2",
     "node-tcp-relay": "^0.0.13",
     "port-validator": "^0.1.0-beta1"
   },

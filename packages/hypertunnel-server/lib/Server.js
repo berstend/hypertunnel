@@ -8,6 +8,7 @@ const Koa = require('koa')
 const Router = require('koa-router')
 const Greenlock = require('greenlock-koa')
 const bodyParser = require('koa-bodyparser')
+const enforceHttps = require('koa-sslify')
 
 const TunnelManager = require('./TunnelManager')
 
@@ -33,7 +34,8 @@ class Server {
     if (process.env.SSL_PRODUCTION) {
       this._ssl.acme = 'https://acme-v02.api.letsencrypt.org/directory'
     }
-    this._greenlock = (this._ssl.enabled) ? this._createGreenlock() : null
+    // this._greenlock = (this._ssl.enabled) ? this._createGreenlock() : null
+    this._greenlock = this._createGreenlock()
     this._server = null
     this._secureServer = null
     debug('created', opts)
@@ -136,6 +138,7 @@ class Server {
       }
     })
 
+    if (this._ssl.enabled) { app.use(enforceHttps()) }
     app.use(bodyParser())
     app.use(router.routes())
     app.use(router.allowedMethods())
