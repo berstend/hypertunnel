@@ -14,7 +14,6 @@ module.exports = {
     {
       name: CONFIG.serviceName,
       script: 'app.js',
-      cwd: 'deploy/service',
       env: {
         NODE_ENV: 'production',
         SERVER_PORT: 80,
