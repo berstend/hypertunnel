@@ -104,6 +104,7 @@ pm2 deploy vagrant
 # ssh into vagrant machine for debugging:
 pm2 list
 pm2 monit
+pm2 logs hypertunnel-service --lines 200
 ```
 
 

@@ -55,7 +55,7 @@ class Client {
     if (this.deleted) { return true }
     const payload = {
       serverToken: this.token,
-      internetPort: this.desiredInternetPort,
+      internetPort: this.internetPort,
       secret: this.secret
     }
     const { body } = await got(`${this.server}/delete`, { json: true, body: payload, throwHttpErrors: false })
