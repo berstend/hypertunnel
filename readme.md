@@ -65,7 +65,7 @@ Given that there is no alternative to hypertunnel I figured I'd rather release i
 
 Contributions are welcome. 
 
-We use a [monorepo](/) powered by [Lerna](https://github.com/lerna/lerna#--use-workspaces) (and yarn workspaces), [ava](https://github.com/avajs/ava) for testing and the [standard](https://standardjs.com/) style for linting.
+We use a [monorepo](https://github.com/berstend/hypertunnel) powered by [Lerna](https://github.com/lerna/lerna#--use-workspaces) (and yarn workspaces), [ava](https://github.com/avajs/ava) for testing and the [standard](https://standardjs.com/) style for linting.
 
 **Monorepo cheat sheet**
 
