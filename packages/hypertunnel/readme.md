@@ -2,7 +2,7 @@
 
 A free TCP relay/reverse proxy service to **expose any TCP/IP service** running behind a NAT.
 
-**Please refer to the [main hypertunnel repo](https://github.com/berstend/hypertunnel) for more details.**
+**Please refer to the [main hypertunnel repo](https://github.com/berstend/hypertunnel#readme) for more details.**
 
 ## Installation
 ```bash
