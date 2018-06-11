@@ -38,16 +38,26 @@ npx hypertunnel --port 8080
 
 ## Example
 
-In case 8080 is a local TCP/IP service port you wish to expose on the internet:
+Run a static web server in your current directory:
 
 ```bash
-❯❯❯ hypertunnel --port 8080
+❯❯❯ npx http-server -p 7777
 ```
+
+In another terminal window create a hypertunnel to make that server accessible from the internet:
+
+```bash
+❯❯❯ npx hypertunnel -p 7777
+```
+
+Et voila:
+
 ```bash
   ✨ Hypertunnel created.
 
-  Tunneling hypertunnel.ga:9432 > localhost:8080
+  Tunneling hypertunnel.ga:19432 > localhost:7777
 ```
+
 
 ## Comparison to localtunnel/ngrok
 
