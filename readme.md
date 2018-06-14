@@ -59,7 +59,7 @@ Et voila:
   Tunneling hypertunnel.ga:19432 > localhost:7777
 ```
 
-#### Bonus: Free SSL termination (https://)
+### Bonus: Free SSL termination (https://)
 
 Run hypertunnel with the `--ssl` flag, to let it know you wish for https support (with a valid certificate):
 
@@ -97,6 +97,38 @@ Use the hypertunnel to SSH into that machine, from anywhere:
 Warning: Permanently added 'hypertunnel.ga:21357' (ECDSA) to the list of known hosts.
 Password:
 ```
+
+
+## Example: Run and expose a local telnet chat server
+
+```bash
+❯❯❯ npx netchat server -p 3000
+```
+
+In another terminal:
+
+```bash
+❯❯❯ npx hypertunnel -p 3000
+```
+
+From anywhere:
+
+```bash
+❯❯❯ telnet hypertunnel.ga 31967
+```
+```bash
+Trying 159.69.23.189...
+Connected to hypertunnel.ga.
+Escape character is '^]'.
+bob
+Welcome, ::ffff:127.0.0.1:56252
+Type "quit" to exit.
+
+Enter username: You are now bob
+> hello world
+> _
+```
+
 
 ## Comparison to localtunnel/ngrok
 
