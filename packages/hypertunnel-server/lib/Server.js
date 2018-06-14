@@ -201,7 +201,7 @@ class Server {
         ca: path.join(certfolder, 'ca-crt.pem')
       }
     }
-    const configDir = this._greenlock._storeOpts.configDir
+    const configDir = this._ssl.dir
     const hostname = this.serverDomain
     const makePathAbsolute = (p) => p.replace(':configDir', configDir).replace(':hostname', hostname)
     const tlsOptions = {
