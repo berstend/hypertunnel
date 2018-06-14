@@ -121,6 +121,7 @@ class Server {
           internetPort: tunnel.relay.internetPort,
           secret: tunnel.secret,
           uri: `${this.serverDomain}:${tunnel.relay.internetPort}`,
+          ssl: tunnel.ssl,
           expiresIn: this.manager.maxAge
         }
         if (tunnel.ssl) {
