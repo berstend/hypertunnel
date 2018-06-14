@@ -238,6 +238,7 @@ yarn test
 
 **client**
 - Support `--basic-auth` flag as a simple way to secure a local http server
+- Add `--timeout` flag, so a tunnel will self-destruct after a specified delay
 
 **server**
 - Use e.g. redis or message passing for tunnel manager data to support clustering
