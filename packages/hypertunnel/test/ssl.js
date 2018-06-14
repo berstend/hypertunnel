@@ -54,7 +54,7 @@ test('will create a usable https tunnel with --ssl', async (t) => {
   t.is((await got(`${serverUrl}/status`, { json: true })).body.tunnels, 1)
 
   // confirm that tunnel uri looks as expected
-  t.is(client.uri, `${serverData.serverDomain}:${clientData.internetPort}`)
+  t.is(client.uri, `https://${serverData.serverDomain}:${clientData.internetPort}`)
 
   // test local server through tunnel created by client
   t.is((await got(`${client.uri}`)).body, localServerData.response)
