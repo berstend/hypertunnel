@@ -79,6 +79,11 @@ class Server {
       }
     })
 
+    router.get('/status/versions', async (ctx, next) => {
+      debug('/status/versions')
+      ctx.body = [require('hypertunnel-tcp-relay/package.json')]
+    })
+
     router.get('/status/:internetPort', async (ctx, next) => {
       debug('/status', ctx.params.internetPort)
       const tunnel = this.manager.tunnels.get(parseInt(ctx.params.internetPort))
