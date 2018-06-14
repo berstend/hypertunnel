@@ -2,6 +2,7 @@
 
 const debug = require('debug')('hypertunnel:server')
 
+const path = require('path')
 const http = require('http')
 const https = require('https')
 const Koa = require('koa')
@@ -104,7 +105,15 @@ class Server {
         ctx.throw(400, `Invalid serverToken`)
       }
       try {
-        const tunnel = await this.manager.newTunnel(parseInt(body.internetPort) || 0, parseInt(body.relayPort) || 0)
+        const opts = {}
+        if (body.ssl) {
+          opts.ssl = true
+          opts.tlsOptions = await this._getTlsOptions()
+        }
+        if (body.ssl && !this._ssl.enabled) {
+          debug('Warning, client requested SSL but only self-signed certs available.')
+        }
+        const tunnel = await this.manager.newTunnel(parseInt(body.internetPort) || 0, parseInt(body.relayPort) || 0, opts)
         ctx.body = {
           success: !!tunnel.relay,
           createdAt: tunnel.createdAt,
@@ -113,6 +122,9 @@ class Server {
           secret: tunnel.secret,
           uri: `${this.serverDomain}:${tunnel.relay.internetPort}`,
           expiresIn: this.manager.maxAge
+        }
+        if (tunnel.ssl) {
+          ctx.body.uri = `https://${this.serverDomain}:${tunnel.relay.internetPort}`
         }
         ctx.body.serverBanner = this.generateBannerMessage(ctx.body)
         debug('/create - response', ctx.body)
@@ -175,6 +187,27 @@ class Server {
       })
     })
     return this
+  }
+
+  async _getTlsOptions () {
+    if (!this._ssl.enabled) {
+      debug('Note: Using self-signed certs.')
+      const certfolder = path.join(__dirname, 'self-signed-certs')
+      return {
+        key: path.join(certfolder, 'server-key.pem'),
+        cert: path.join(certfolder, 'server-crt.pem'),
+        ca: path.join(certfolder, 'ca-crt.pem')
+      }
+    }
+    const configDir = this._greenlock._storeOpts.configDir
+    const hostname = this.serverDomain
+    const makePathAbsolute = (p) => p.replace(':configDir', configDir).replace(':hostname', hostname)
+    const tlsOptions = {
+      key: makePathAbsolute(this._greenlock.privkeyPath),
+      cert: makePathAbsolute(this._greenlock.certPath),
+      ca: makePathAbsolute(this._greenlock.fullchainPath)
+    }
+    return tlsOptions
   }
 
   _createGreenlock () {

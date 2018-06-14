@@ -10,6 +10,7 @@ class Tunnel {
     this.internetPort = internetPort
     this.relay = relay
     this.secret = opts.secret
+    this.ssl = opts.ssl
     this.createdAt = new Date()
 
     // todo: tie tcp-relay events to Tunnel

@@ -18,6 +18,7 @@ const tlsOptions = {
 }
 
 test('will create a usable tunnel with https', async (t) => {
+  // Don't reject self signed certs
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
 
   const demoOptions = {

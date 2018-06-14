@@ -2,7 +2,7 @@
 
 const debug = require('debug')('hypertunnel:tunnelmanager')
 
-const { RelayServer } = require('hypertunnel-tcp-relay').Server
+const { RelayServer, TLSRelayServer } = require('hypertunnel-tcp-relay').Server
 const getAvailablePort = require('get-port')
 const { portValidator } = require('port-validator')
 
@@ -33,7 +33,14 @@ class TunnelManager {
     const internetPort = await getAvailablePort(this.sanitizePort(desiredInternetPort))
     const relayPort = await getAvailablePort(this.sanitizePort(desiredRelayPort))
     const relayOptions = { secret: generateSecret() }
-    const relay = new RelayServer({ relayPort, internetPort }, relayOptions)
+
+    let relay = null
+    if (opts.ssl) {
+      relayOptions.internetListener = { tlsOptions: opts.tlsOptions }
+      relay = new TLSRelayServer({ relayPort, internetPort }, relayOptions)
+    } else {
+      relay = new RelayServer({ relayPort, internetPort }, relayOptions)
+    }
     const tunnel = new Tunnel(internetPort, relay, { secret: relayOptions.secret })
     this.tunnels.set(tunnel.internetPort, tunnel)
     debug('newTunnel - end', tunnel, internetPort, relay, this.tunnels.size)

@@ -10,13 +10,14 @@ const got = require('got')
  * A hypertunnel client.
  */
 class Client {
-  constructor (port, opts = {}) {
+  constructor (port, opts = {}, options = { ssl: false }) {
     this.port = port
     this.host = opts.host || 'localhost'
     this.server = opts.server || 'https://hypertunnel.ga'
     this.serverParts = parseUrl(this.server)
     this.token = opts.token || 'free-server-please-be-nice'
     this.desiredInternetPort = opts.internetPort
+    this.options = options
 
     this.deleted = false
     this.relay = null
@@ -34,7 +35,8 @@ class Client {
   async create () {
     const payload = {
       serverToken: this.token,
-      internetPort: this.desiredInternetPort
+      internetPort: this.desiredInternetPort,
+      ssl: this.options.ssl
     }
     const { body } = await got(`${this.server}/create`, { json: true, body: payload, throwHttpErrors: false })
     debug('create', body)
