@@ -1,6 +1,6 @@
 {
   "name": "hypertunnel-tcp-relay",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "Underlying TCP/IP relay for hypertunnel.",
   "main": "index.js",
   "repository": "berstend/hypertunnel",
