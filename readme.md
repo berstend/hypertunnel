@@ -32,6 +32,7 @@ This free TCP relay/reverse proxy service can be used to **expose any TCP/IP ser
     -s, --server [server]        hypertunnel server to use (default: https://hypertunnel.ga)
     -t, --token [token]          token required by the server (default: free-server-please-be-nice)
     -i, --internet-port [port]   the desired internet port on the public server
+    --ssl                        enable SSL termination (https://) on the public server    
     -h, --help                   output usage information
 ```
 
@@ -57,6 +58,21 @@ Et voila:
 
   Tunneling hypertunnel.ga:19432 > localhost:7777
 ```
+
+#### Bonus: Free SSL termination (https://)
+
+Run hypertunnel with the `--ssl` flag, to let it know you wish for https support (with a valid certificate):
+
+```bash
+❯❯❯ npx hypertunnel@latest -p 7777 --ssl
+```
+```bash
+  ✨ Hypertunnel created.
+
+  Tunneling https://hypertunnel.ga:26949 > localhost:7777
+```
+
+SSL is not enabled by default as it makes mostly sense for HTTP servers, which is not the sole use-case for hypertunnel. :-)
 
 ## Example: Remote SSH login
 

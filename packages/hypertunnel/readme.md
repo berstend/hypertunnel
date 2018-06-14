@@ -24,6 +24,7 @@ hypertunnel --help
     -s, --server [server]        hypertunnel server to use (default: https://hypertunnel.ga)
     -t, --token [token]          token required by the server (default: free-server-please-be-nice)
     -i, --internet-port [port]   the desired internet port on the public server
+    --ssl                        enable SSL termination (https://) on the public server    
     -h, --help                   output usage information
 ```
 
