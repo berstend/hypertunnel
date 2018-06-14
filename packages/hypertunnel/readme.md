@@ -28,6 +28,9 @@ hypertunnel --help
 ```
 
 ## Debug
-```
+```bash
 DEBUG=hypertunnel:* hypertunnel --port 8080
+
+# If you wish to debug the underlying tcp-relay as well:
+DEBUG=hypertunnel:*,relay:* hypertunnel --port 8080
 ```

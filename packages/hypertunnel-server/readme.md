@@ -23,6 +23,9 @@ hypertunnel-server --help
 ```
 
 ## Debug
-```
+```bash
 DEBUG=hypertunnel:* hypertunnel-server
+
+# If you wish to debug the underlying tcp-relay as well:
+DEBUG=hypertunnel:*,relay:* hypertunnel-server
 ```
