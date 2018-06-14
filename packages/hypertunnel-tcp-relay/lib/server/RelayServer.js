@@ -12,6 +12,7 @@ class RelayServer extends EventEmitter {
     super()
     this.debug = Debug(`${DEBUG_NAMESPACE}`)
     this.debug('constructor: %o', { opts, options })
+
     this.relayPort = opts.relayPort
     this.internetPort = opts.internetPort
     this.options = options
@@ -19,14 +20,8 @@ class RelayServer extends EventEmitter {
     this.relayListener = this.createRelayListener()
     this.internetListener = this.createInternetListener()
 
-    this.relayListener.on('new', (client) => {
-      this.debug('relayListener:onNew', { client: !!client })
-      this.internetListener.pair(this.relayListener, client)
-    })
-    this.internetListener.on('new', (client) => {
-      this.debug('internetListener:onNew', { client: !!client })
-      this.relayListener.pair(this.internetListener, client)
-    })
+    this.relayListener.on('new', this.onNewRelayListenerClient.bind(this))
+    this.internetListener.on('new', this.onNewInternetListenerClient.bind(this))
   }
 
   get RelayListener () { return Listener }
@@ -49,6 +44,16 @@ class RelayServer extends EventEmitter {
         timeout: this.options.timeout || 20000 },
       { context: 'internet' }
     )
+  }
+
+  onNewRelayListenerClient (client) {
+    this.debug('relayListener:onNewClient', { client: !!client })
+    this.internetListener.pair(this.relayListener, client)
+  }
+
+  onNewInternetListenerClient (client) {
+    this.debug('internetListener:onNewClient', { client: !!client })
+    this.relayListener.pair(this.internetListener, client)
   }
 
   end () {

@@ -12,6 +12,7 @@ class RelayClient extends EventEmitter {
     super()
     this.debug = Debug(`${DEBUG_NAMESPACE}`)
     this.debug('constructor: %o', { opts, options })
+
     this.opts = opts
     this.options = options
     this.retry = options.retry || true

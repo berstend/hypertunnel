@@ -15,6 +15,7 @@ class Listener extends EventEmitter {
     super()
     this.debug = Debug(`${DEBUG_NAMESPACE}:${context}`)
     this.debug('constructor: %o', { opts, options })
+
     this.port = opts.port
     this.options = options
     this.context = context

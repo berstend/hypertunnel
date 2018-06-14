@@ -10,12 +10,14 @@ class Client extends EventEmitter {
     super()
     this.debug = Debug(`${DEBUG_NAMESPACE}:${context}`)
     this.debug('constructor: %o', { options })
+
     this.socket = opts.socket
     this.options = options
 
     if (options.bufferData) { this.buffer = [] }
     this.pairedSocket = undefined
     this.timeout()
+
     this.socket.on('data', this.onSocketData.bind(this))
     this.socket.on('close', this.onSocketClose.bind(this))
   }

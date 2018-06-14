@@ -10,9 +10,9 @@ const DEBUG_NAMESPACE = 'relay:client:client'
 class Client extends EventEmitter {
   constructor (opts = { host: null, port: null, relayHost: null, relayPort: null }, options = { }, index = 0) {
     super()
-
     this.debug = Debug(`${DEBUG_NAMESPACE}:${index}`)
     this.debug('constructor: %o', { opts, options })
+
     this.opts = opts
     this.options = options
 
