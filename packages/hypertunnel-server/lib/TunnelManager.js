@@ -41,7 +41,7 @@ class TunnelManager {
     } else {
       relay = new RelayServer({ relayPort, internetPort }, relayOptions)
     }
-    const tunnel = new Tunnel(internetPort, relay, { secret: relayOptions.secret })
+    const tunnel = new Tunnel(internetPort, relay, { secret: relayOptions.secret, ssl: opts.ssl })
     this.tunnels.set(tunnel.internetPort, tunnel)
     debug('newTunnel - end', tunnel, internetPort, relay, this.tunnels.size)
     return tunnel

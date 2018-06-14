@@ -38,6 +38,7 @@ class Client {
       internetPort: this.desiredInternetPort,
       ssl: this.options.ssl
     }
+    debug('create payload', payload)
     const { body } = await got(`${this.server}/create`, { json: true, body: payload, throwHttpErrors: false })
     debug('create', body)
     if (!body.success) { throw new Error(body && body.message ? body.message : 'Unexpected response') }

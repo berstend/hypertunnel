@@ -105,8 +105,9 @@ class Server {
         ctx.throw(400, `Invalid serverToken`)
       }
       try {
-        const opts = {}
+        const opts = { }
         if (body.ssl) {
+          debug('SSL requested')
           opts.ssl = true
           opts.tlsOptions = await this._getTlsOptions()
         }
@@ -121,11 +122,11 @@ class Server {
           internetPort: tunnel.relay.internetPort,
           secret: tunnel.secret,
           uri: `${this.serverDomain}:${tunnel.relay.internetPort}`,
-          ssl: tunnel.ssl,
           expiresIn: this.manager.maxAge
         }
         if (tunnel.ssl) {
           ctx.body.uri = `https://${this.serverDomain}:${tunnel.relay.internetPort}`
+          ctx.body.ssl = true
         }
         ctx.body.serverBanner = this.generateBannerMessage(ctx.body)
         debug('/create - response', ctx.body)
