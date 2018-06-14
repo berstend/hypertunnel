@@ -10,10 +10,11 @@ This free TCP relay/reverse proxy service can be used to **expose any TCP/IP ser
 
 ## Installation
 ```bash
-❯❯❯ npm install -g hypertunnel
-
-# or use directly with npx (part of npm):
+# Use directly with no installation (npx is part of npm):
 ❯❯❯ npx hypertunnel --port 8080
+
+# Or install globally:
+❯❯❯ npm install -g hypertunnel
 ```
 
 ## Usage
@@ -36,8 +37,15 @@ This free TCP relay/reverse proxy service can be used to **expose any TCP/IP ser
     -h, --help                   output usage information
 ```
 
+## Examples <sup><sub><var>(click to expand)</var></sub></sup>
 
-## Example: Local webserver
+
+---
+
+<details>
+ <summary><strong><code>Example</code> Local webserver</strong></summary>
+
+### Example: Local webserver
 
 Run a static web server in your current directory:
 
@@ -59,7 +67,7 @@ Et voila:
   Tunneling hypertunnel.ga:19432 > localhost:7777
 ```
 
-### Bonus: Free SSL termination (https://)
+#### Bonus: Free SSL termination (https://)
 
 Run hypertunnel with the `--ssl` flag, to let it know you wish for https support (with a valid certificate):
 
@@ -74,7 +82,14 @@ Run hypertunnel with the `--ssl` flag, to let it know you wish for https support
 
 SSL is not enabled by default as it makes mostly sense for HTTP servers, which is not the sole use-case for hypertunnel. :-)
 
-## Example: Remote SSH login
+</details>
+
+---
+
+<details>
+ <summary><strong><code>Example</code> Remote SSH login</strong></summary>
+
+### Example: Remote SSH login
 
 As hypertunnel is a generic TCP/IP relay, why not use it for something different than a webserver.
 
@@ -98,8 +113,14 @@ Warning: Permanently added 'hypertunnel.ga:21357' (ECDSA) to the list of known h
 Password:
 ```
 
+</details>
 
-## Example: Run and expose a local telnet chat server
+---
+
+<details>
+ <summary><strong><code>Example</code> Run and expose a local telnet chat server</strong></summary>
+
+### Example: Run and expose a local telnet chat server
 
 ```bash
 ❯❯❯ npx netchat server -p 3000
@@ -128,6 +149,11 @@ Enter username: You are now bob
 > hello world
 > _
 ```
+
+</details>
+
+---
+
 
 
 ## Comparison to localtunnel/ngrok
@@ -174,7 +200,8 @@ Contributions are welcome.
 
 We use a [monorepo](https://github.com/berstend/hypertunnel) powered by [Lerna](https://github.com/lerna/lerna#--use-workspaces) (and yarn workspaces), [ava](https://github.com/avajs/ava) for testing and the [standard](https://standardjs.com/) style for linting.
 
-**Monorepo cheat sheet**
+<details>
+ <summary><strong>Monorepo cheat sheet</strong></summary>
 
 ```bash
 # Make sure you have a recent version of yarn & lerna installed:
@@ -201,6 +228,7 @@ lerna exec -- yarn remove fs-extra
 yarn test
 ```
 
+</details>
 
 ### Todo
 
