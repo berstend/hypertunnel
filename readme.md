@@ -10,10 +10,10 @@ This free TCP relay/reverse proxy service can be used to **expose any TCP/IP ser
 
 ## Installation
 ```bash
-npm install -g hypertunnel
+❯❯❯ npm install -g hypertunnel
 
 # or use directly with npx (part of npm):
-npx hypertunnel --port 8080
+❯❯❯ npx hypertunnel --port 8080
 ```
 
 ## Usage
@@ -36,7 +36,7 @@ npx hypertunnel --port 8080
 ```
 
 
-## Example
+## Example: Local webserver
 
 Run a static web server in your current directory:
 
@@ -58,6 +58,29 @@ Et voila:
   Tunneling hypertunnel.ga:19432 > localhost:7777
 ```
 
+## Example: Remote SSH login
+
+As hypertunnel is a generic TCP/IP relay, why not use it for something different than a webserver.
+
+Say you're running MacOS or Linux on your workstation and you want to quickly ssh into it from anywhere.
+
+> Note: Make sure your local SSH daemon is running ([macOS instructions](https://support.apple.com/kb/PH25252?locale=en_US)).
+
+```bash
+# Create a tunnel for the local SSH service running on port 22
+❯❯❯ npx hypertunnel --port 22
+```
+
+Use the hypertunnel to SSH into that machine, from anywhere:
+
+```bash
+# Example, adjust the port based on the previous output:
+❯❯❯ ssh hypertunnel.ga -p 21357
+```
+```bash
+Warning: Permanently added 'hypertunnel.ga:21357' (ECDSA) to the list of known hosts.
+Password:
+```
 
 ## Comparison to localtunnel/ngrok
 
@@ -133,12 +156,12 @@ yarn test
 
 ### Todo
 
-**client**
-- Support `--basic-auth` flag as a simple way to secure a local http server
-
 **server & client**
 - Hook into `hypertunnel-tcp-relay` events for better cleanup, error reporting and to show established connections
 - Support environment variables next to cli params
+
+**client**
+- Support `--basic-auth` flag as a simple way to secure a local http server
 
 **server**
 - Use e.g. redis or message passing for tunnel manager data to support clustering
