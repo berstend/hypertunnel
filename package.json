@@ -17,7 +17,6 @@
     "packages/*"
   ],
   "devDependencies": {
-    "got": "^8.3.1",
     "lerna": "^2.11.0"
   }
 }

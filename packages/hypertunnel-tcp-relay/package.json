@@ -1,0 +1,28 @@
+{
+  "name": "hypertunnel-tcp-relay",
+  "version": "1.2.5",
+  "description": "Underlying TCP/IP relay for hypertunnel.",
+  "main": "index.js",
+  "repository": "berstend/hypertunnel",
+  "author": "berstend & tewarid",
+  "license": "MIT",
+  "scripts": {
+    "docs": "exit 0",
+    "test": "ava -v && standard"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "hypertunnel-tcp-relay",
+    "node-tcp-relay"
+  ],
+  "dependencies": {
+    "debug": "^3.1.0"
+  },
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "standard": "^11.0.1",
+    "got": "^8.3.1"
+  }
+}

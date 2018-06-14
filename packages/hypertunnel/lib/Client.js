@@ -2,7 +2,7 @@
 
 const debug = require('debug')('hypertunnel:client')
 
-const relayClient = require('node-tcp-relay')
+const { RelayClient } = require('hypertunnel-tcp-relay').Client
 const parseUrl = require('url-parse')
 const got = require('got')
 
@@ -47,7 +47,12 @@ class Client {
     this.expiresIn = body.expiresIn
     this.serverBanner = body.serverBanner
 
-    this.relay = relayClient.createRelayClient(this.host, this.port, this.serverParts.hostname, this.relayPort, { secret: this.secret, numConn: 1 })
+    this.relay = new RelayClient({
+      host: this.host,
+      port: this.port,
+      relayHost: this.serverParts.hostname,
+      relayPort: this.relayPort
+    }, { secret: this.secret })
     return this
   }
 

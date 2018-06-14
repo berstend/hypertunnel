@@ -2,7 +2,7 @@
 
 > When localtunnel/ngrok is not enough.
 
-This free TCP relay/reverse proxy service can be used to **expose any TCP/IP service** running behind a NAT. It's based on the excellent [node-tcp-relay](https://github.com/tewarid/node-tcp-relay) from [tewarid](https://github.com/tewarid), adding self-service multi-client support similar to localtunnel, a cool project name with "hyper" in it and **a free public server**.
+This free TCP relay/reverse proxy service can be used to **expose any TCP/IP service** running behind a NAT. It's using [hypertunnel-tcp-relay](/packages/hypertunnel-tcp-relay) under the hood, which itself is based on the excellent [node-tcp-relay](https://github.com/tewarid/node-tcp-relay) from [tewarid](https://github.com/tewarid), adding self-service multi-client support similar to localtunnel, a cool project name with "hyper" in it and **a free public server**.
 
 ![wormhole](https://i.stack.imgur.com/MN8RF.gif)
 > _Fig. 1. A: The public internet. B: Your local TCP/IP service. ;-)_
@@ -133,8 +133,11 @@ yarn test
 
 ### Todo
 
+**client**
+- Support `--basic-auth` flag as a simple way to secure a local http server
+
 **server & client**
-- Hook into `node-tcp-relay` events for better cleanup, error reporting and to show established connections
+- Hook into `hypertunnel-tcp-relay` events for better cleanup, error reporting and to show established connections
 - Support environment variables next to cli params
 
 **server**

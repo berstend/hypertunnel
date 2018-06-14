@@ -3,7 +3,7 @@
 const debug = require('debug')('hypertunnel:tunnel')
 
 /**
- * A tunnel holds the relation of an internet port and a node-tcp-relay server.
+ * A tunnel holds the relation of an internet port and a hypertunnel-tcp-relay server.
  */
 class Tunnel {
   constructor (internetPort, relay, opts = {}) {

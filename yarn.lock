@@ -3362,12 +3362,6 @@ node-pre-gyp@^0.10.0:
     semver "^5.3.0"
     tar "^4"
 
-node-tcp-relay@^0.0.13:
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/node-tcp-relay/-/node-tcp-relay-0.0.13.tgz#466e846a97d8651ba4a7f56f0620bd411bb6d215"
-  dependencies:
-    optimist "^0.6.1"
-
 node.extend@^1.1.5:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/node.extend/-/node.extend-1.1.6.tgz#a7b882c82d6c93a4863a5504bd5de8ec86258b96"

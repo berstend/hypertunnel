@@ -35,7 +35,7 @@
     "commander": "^2.15.1",
     "debug": "^3.1.0",
     "got": "^8.3.1",
-    "node-tcp-relay": "^0.0.13",
+    "hypertunnel-tcp-relay": "^1.2.5",
     "url-parse": "^1.4.1"
   },
   "devDependencies": {
