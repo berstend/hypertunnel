@@ -82,6 +82,16 @@ Run hypertunnel with the `--ssl` flag, to let it know you wish for https support
 
 SSL is not enabled by default as it makes mostly sense for HTTP servers, which is not the sole use-case for hypertunnel. :-)
 
+
+#### Tip: Run commands in parallel
+
+You can use bash niceties to run mutiple commands in parallel and stop all of them when hitting `ctrl+c`:
+
+```bash
+❯❯❯ (npx http-server -p 7777 & npx hypertunnel --port 7777 --ssl)
+```
+
+
 </details>
 
 ---
