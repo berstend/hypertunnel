@@ -1,4 +1,4 @@
-# ✨  hypertunnel [![Build Status](https://travis-ci.org/berstend/hypertunnel.svg?branch=master)](https://travis-ci.org/berstend/hypertunnel) [![ ](https://img.shields.io/uptimerobot/status/m780555855-0760af5af94854abdcb02c82.svg)](https://stats.uptimerobot.com/PzXg8inWK) [![ ](https://img.shields.io/uptimerobot/ratio/m778918918-3e92c097147760ee39d02d36.svg)](https://stats.uptimerobot.com/PzXg8inWK) [![ ](https://img.shields.io/npm/v/hypertunnel.svg)](https://www.npmjs.com/package/hypertunnel)
+# ✨  hypertunnel [![Build Status](https://travis-ci.org/berstend/hypertunnel.svg?branch=master)](https://travis-ci.org/berstend/hypertunnel) [![ ](https://img.shields.io/uptimerobot/status/m780555855-0760af5af94854abdcb02c82.svg)](https://stats.uptimerobot.com/PzXg8inWK) [![ ](https://img.shields.io/uptimerobot/ratio/m778918918-3e92c097147760ee39d02d36.svg)](https://stats.uptimerobot.com/PzXg8inWK) [![](https://packagephobia.now.sh/badge?p=hypertunnel)](https://packagephobia.now.sh/result?p=hypertunnel) [![ ](https://img.shields.io/npm/v/hypertunnel.svg)](https://www.npmjs.com/package/hypertunnel)
 
 > When localtunnel/ngrok is not enough.
 
