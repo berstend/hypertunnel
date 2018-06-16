@@ -1,11 +1,12 @@
 # ✨  hypertunnel [![Build Status](https://travis-ci.org/berstend/hypertunnel.svg?branch=master)](https://travis-ci.org/berstend/hypertunnel) [![ ](https://img.shields.io/uptimerobot/status/m780555855-0760af5af94854abdcb02c82.svg)](https://stats.uptimerobot.com/PzXg8inWK) [![ ](https://img.shields.io/uptimerobot/ratio/m778918918-3e92c097147760ee39d02d36.svg)](https://stats.uptimerobot.com/PzXg8inWK) [![](https://packagephobia.now.sh/badge?p=hypertunnel)](https://packagephobia.now.sh/result?p=hypertunnel) [![ ](https://img.shields.io/npm/v/hypertunnel.svg)](https://www.npmjs.com/package/hypertunnel)
 
+<a href="https://github.com/berstend/hypertunnel"><img src="https://i.stack.imgur.com/MN8RF.gif" width="297px" height="245px" align="right" /></a>
+
+
 > When localtunnel/ngrok is not enough.
 
 This free TCP relay/reverse proxy service can be used to **expose any TCP/IP service** running behind a NAT. It's using [hypertunnel-tcp-relay](/packages/hypertunnel-tcp-relay) under the hood, which itself is based on the excellent [node-tcp-relay](https://github.com/tewarid/node-tcp-relay) from [tewarid](https://github.com/tewarid), adding self-service multi-client support similar to localtunnel, a cool project name with "hyper" in it and **a free public server**.
 
-![wormhole](https://i.stack.imgur.com/MN8RF.gif)
-> _Fig. 1. A: The public internet. B: Your local TCP/IP service. ;-)_
 
 
 ## Installation
