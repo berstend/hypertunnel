@@ -34,7 +34,8 @@ This free TCP relay/reverse proxy service can be used to **expose any TCP/IP ser
     -s, --server [server]        hypertunnel server to use (default: https://hypertunnel.ga)
     -t, --token [token]          token required by the server (default: free-server-please-be-nice)
     -i, --internet-port [port]   the desired internet port on the public server
-    --ssl                        enable SSL termination (https://) on the public server    
+    -r, --relay-port [port]      the desired relay port on the public server
+    --ssl                        enable SSL termination (https://) on the public server
     -h, --help                   output usage information
 ```
 
@@ -169,7 +170,7 @@ Enter username: You are now bob
 
 ## Comparison to localtunnel/ngrok
 
-Both are great services! 
+Both are great services!
 If your use-case is to simply tunnel local http web server traffic I suggest using them. :-)
 
 I ran into issues when trying to expose a local proxy server (to use the client as forwarding proxy). Both services need to inspect and rewrite HTTP headers for routing, so using the tunnel as a proxy in e.g. Chrome won't work. There are a couple other use-cases where raw TCP stream tunnelling is desired and hypertunnel is the only available option.
@@ -207,7 +208,7 @@ Given that there is no alternative to hypertunnel I figured I'd rather release i
 
 ## Contributing
 
-Contributions are welcome. 
+Contributions are welcome.
 
 We use a [monorepo](https://github.com/berstend/hypertunnel) powered by [Lerna](https://github.com/lerna/lerna#--use-workspaces) (and yarn workspaces), [ava](https://github.com/avajs/ava) for testing and the [standard](https://standardjs.com/) style for linting.
 
@@ -218,7 +219,7 @@ We use a [monorepo](https://github.com/berstend/hypertunnel) powered by [Lerna](
 # Make sure you have a recent version of yarn & lerna installed:
 npm install -g yarn lerna
 
-# Bootstrap the packages in the current Lerna repo. 
+# Bootstrap the packages in the current Lerna repo.
 # Installs all of their dependencies and links any cross-dependencies.
 yarn bootstrap
 
