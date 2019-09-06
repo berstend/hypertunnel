@@ -16,6 +16,7 @@ module.exports = async (argv) => {
     .option('-s, --server [server]', 'hypertunnel server to use', 'https://hypertunnel.ga')
     .option('-t, --token [token]', 'token required by the server', 'free-server-please-be-nice')
     .option('-i, --internet-port [port]', 'the desired internet port on the public server', parseInt)
+    .option('-r, --relay-port [port]', 'the desired relay port on the public server', parseInt)
     .option('--ssl', 'enable SSL termination (https://) on the public server')
     .parse(argv)
 
@@ -41,7 +42,8 @@ module.exports = async (argv) => {
     host: program.localhost,
     server: program.server,
     token: program.token,
-    internetPort: program.internetPort
+    internetPort: program.internetPort,
+    relayPort: program.relayPort
   }, { ssl: program.ssl })
   await client.create()
   let message = `
