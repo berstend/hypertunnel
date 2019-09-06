@@ -22,7 +22,7 @@ class Client {
     this.deleted = false
     this.relay = null
     this.internetPort = null
-    this.relayPort = null
+    this.relayPort = opts.relayPort || null
     this.uri = null
     this.secret = null
     this.createdAt = null
@@ -36,6 +36,7 @@ class Client {
     const payload = {
       serverToken: this.token,
       internetPort: this.desiredInternetPort,
+      relayPort: this.relayPort,
       ssl: this.options.ssl
     }
     debug('create payload', payload)
