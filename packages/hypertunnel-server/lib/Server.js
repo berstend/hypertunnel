@@ -14,6 +14,7 @@ const TunnelManager = require('./TunnelManager')
 
 const app = new Koa()
 const router = new Router()
+const fs = require('fs')
 
 class Server {
   constructor (opts = {}) {
@@ -21,6 +22,7 @@ class Server {
     this.serverPort = parseInt(opts.serverPort) || 3000
     this.serverDomain = opts.serverDomain || 'hypertunnel.lvh.me'
     this.serverToken = opts.serverToken || 'free-server-please-be-nice'
+    this.serverTokenFile = opts.serverTokenFile || ''
 
     this.manager = new TunnelManager()
     this._ssl = {
@@ -37,11 +39,23 @@ class Server {
     this._greenlock = this._createGreenlock()
     this._server = null
     this._secureServer = null
+    this._tokenFile = null
+
+    if (this.serverTokenFile !== '') {
+      try {
+        this._tokenFile = JSON.parse(fs.readFileSync(this.serverTokenFile))
+        console.log('Token file loaded.')
+      } catch (error) {
+        console.log('Error reading tokenFile. We don´t use it... ', error)
+        this.serverTokenFile = ''
+        this._tokenFile = null
+      }
+    }
     debug('created', opts)
   }
 
   generateBannerMessage (body) {
-    if (this.serverToken !== 'free-server-please-be-nice') { return }
+    if (this.serverToken !== 'free-server-please-be-nice' || this.serverTokenFile !== '') { return }
     return `
   You're using a free service, please be gentle. :-)
   Contributions welcome: ${this.landingPage}
@@ -101,7 +115,13 @@ class Server {
     router.post('/create', async (ctx, next) => {
       debug('/create', ctx.request.body)
       const body = ctx.request.body
-      if (body.serverToken !== this.serverToken) {
+      if (this._tokenFile) {
+        if (!this._tokenFile[body.internetPort] || body.serverToken !== this._tokenFile[body.internetPort]) {
+          ctx.throw(400, `Invalid serverToken`)
+        } else {
+          console.log('Port', body.internetPort, 'in use...')
+        }
+      } else if (body.serverToken !== this.serverToken) {
         ctx.throw(400, `Invalid serverToken`)
       }
       try {
@@ -139,7 +159,11 @@ class Server {
     router.post('/delete', async (ctx, next) => {
       debug('/delete', ctx.request.body)
       const body = ctx.request.body
-      if (body.serverToken !== this.serverToken) {
+      if (this._tokenFile) {
+        if (!this._tokenFile[body.internetPort] || body.serverToken !== this._tokenFile[body.internetPort]) {
+          ctx.throw(400, `Invalid serverToken`)
+        }
+      } else if (body.serverToken !== this.serverToken) {
         ctx.throw(400, `Invalid serverToken`)
       }
       try {
