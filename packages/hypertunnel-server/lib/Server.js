@@ -115,11 +115,11 @@ class Server {
     router.post('/create', async (ctx, next) => {
       debug('/create', ctx.request.body)
       const body = ctx.request.body
+      var deleteIfAvailable = false
       if (this._tokenFile) {
+        deleteIfAvailable = true
         if (!this._tokenFile[body.internetPort] || body.serverToken !== this._tokenFile[body.internetPort]) {
           ctx.throw(400, `Invalid serverToken`)
-        } else {
-          console.log('Port', body.internetPort, 'in use...')
         }
       } else if (body.serverToken !== this.serverToken) {
         ctx.throw(400, `Invalid serverToken`)
@@ -134,7 +134,7 @@ class Server {
         if (body.ssl && !this._ssl.enabled) {
           debug('Warning, client requested SSL but only self-signed certs available.')
         }
-        const tunnel = await this.manager.newTunnel(parseInt(body.internetPort) || 0, parseInt(body.relayPort) || 0, opts)
+        const tunnel = await this.manager.newTunnel(parseInt(body.internetPort) || 0, parseInt(body.relayPort) || 0, opts, deleteIfAvailable)
         ctx.body = {
           success: !!tunnel.relay,
           createdAt: tunnel.createdAt,

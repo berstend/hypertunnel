@@ -28,8 +28,11 @@ class TunnelManager {
    * @param  {Object} opts
    * @return {Tunnel}
    */
-  async newTunnel (desiredInternetPort = 0, desiredRelayPort = 0, opts = {}) {
+  async newTunnel (desiredInternetPort = 0, desiredRelayPort = 0, opts = {}, deleteIfAvailable = false) {
     debug(`newTunnel - start`, desiredInternetPort, opts)
+    if (deleteIfAvailable) {
+      this.removeSingle(desiredInternetPort)
+    }
     const internetPort = await getAvailablePort(this.sanitizePort(desiredInternetPort))
     const relayPort = await getAvailablePort(this.sanitizePort(desiredRelayPort))
     const relayOptions = { secret: generateSecret() }
@@ -86,6 +89,17 @@ class TunnelManager {
     tunnel.relay.end()
     this.tunnels.delete(internetPort)
     debug('remove - end', { internetPort, secret })
+    return true
+  }
+
+  removeSingle (internetPort) {
+    debug('remove - start', { internetPort })
+    const tunnel = this.tunnels.get(internetPort)
+    debug('remove - tunnel', { tunnel })
+    if (!tunnel) { return false }
+    tunnel.relay.end()
+    this.tunnels.delete(internetPort)
+    debug('remove - end', { internetPort })
     return true
   }
 
