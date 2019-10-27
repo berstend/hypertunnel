@@ -118,8 +118,10 @@ class Server {
       var deleteIfAvailable = false
       if (this._tokenFile) {
         deleteIfAvailable = true
-        if (!this._tokenFile[body.internetPort] || body.serverToken !== this._tokenFile[body.internetPort]) {
+        if (!this._tokenFile[body.internetPort] || body.serverToken !== this._tokenFile[body.internetPort].token) {
           ctx.throw(400, `Invalid serverToken`)
+        } else {
+          body.relayPort = this._tokenFile[body.internetPort].relayPort
         }
       } else if (body.serverToken !== this.serverToken) {
         ctx.throw(400, `Invalid serverToken`)
