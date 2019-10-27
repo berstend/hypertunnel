@@ -12,12 +12,14 @@ module.exports = async (argv) => {
     .option('-p, --port [port]', 'web server port', 3000)
     .option('-d, --domain [domain]', 'public web server domain', 'hypertunnel.lvh.me')
     .option('-t, --token [token]', 'token required to be sent by clients', 'free-server-please-be-nice')
+    .option('-f, --tokenFile [tokenFile]', 'file with token per port required to be sent by clients', '')
     .parse(argv)
 
   const server = new Server({
     serverPort: program.port,
     serverDomain: program.domain,
-    serverToken: program.token
+    serverToken: program.token,
+    serverTokenFile: program.tokenFile
   })
   await server.create()
 
