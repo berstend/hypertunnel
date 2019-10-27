@@ -26,6 +26,7 @@ class TunnelManager {
    * @param  {Number} desiredInternetPort
    * @param  {Number} desiredRelayPort
    * @param  {Object} opts
+   * @param  {Boolean} deleteIfAvailable
    * @return {Tunnel}
    */
   async newTunnel (desiredInternetPort = 0, desiredRelayPort = 0, opts = {}, deleteIfAvailable = false) {
